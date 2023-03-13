@@ -1,6 +1,6 @@
 ---
 title: "Wellness Technology Case Study - Bellabeat Analysis"
-author: "Rachel"
+author: "Rachel Lau"
 output: 
   html_document:
   fig_caption: yes
@@ -10,28 +10,37 @@ output:
   toc_float: yes
 ---
 
-## Scenario
+<br>
+
+### Scenario
 In this scenario, I became a junior data analyst working on the marketing analyst team at Bellabeat, a women-owned high-tect manufacturer and wellness company of health-focused products for women. Bellabeat was founded by Urška Sršen and Sandro Mur in 2014, based in San Francisco. Sršen believes that analyzing smart device fitness data could help on company's development and gaining better future opportunities. 
 In this case study, we are going to explore and analyze a fitness tracker dataset, while gaining insight for Bellabeat.
 
-> ## 1. Ask
+***
 
-### 1.1 Objective/ Business task 
+### 1. Ask
+<br>
+
+#### 1.1 Objective/ Business task 
 Through analyzing a fitness tracker dataset and help guide marketing strategy, suggestion, and plans for the company.
+<br>
 
-### 1.2 Stakeholders
+#### 1.2 Stakeholders
 
-#### Primary stakeholders: 
+Primary stakeholders: 
 
 * Urška Sršen, Bellabeat's cofounder and chief creative officer
 * Sandro Mur, mathemactician and Bellabeat's cofounder
 * Bellabeat marketing analytics team
 
-#### Secondary stakeholders:
+Secondary stakeholders:
+
 * Bellabeat's users
 * General public
 
-> ## 2. Prepare
+<br>
+
+### 2. Prepare
 
 The data using in this case study is a public dataset from Kaggle, an online community platform for data science learning. The dataset "FitBit Fitness Tracker Data" contains s personal fitness tracker from thirty fitbit users. Thirty eligible Fitbit users consented to the submission of personal tracker data, including minute-level output for physical activity, heart rate, and sleep monitoring. It includes information about daily activity, steps, and heart rate that can be used to explore users’ habits.
 
@@ -40,6 +49,8 @@ There are 18 comma-separated values (csv) files from the dataset. I downloaded a
 
 
 We are going to identify the source of the data by checking the ROCCC.
+
+<br>
 
 #### Reliable
 
@@ -61,11 +72,15 @@ The dataset was collected between 03-12-2016 to 05-12-2016. A dataset collected 
 
 Unknown. The dataset did not have any citation.
 
-> ## 3. Process
+<br>
 
-I have choosen to use programming R for my first case study project. In the coming Process stage, we are going to use R to preview, sort, filter, and clean the data. 
+### 3. Process
 
-### 3.1 Install and load packages
+I have choosen to use programming R for the case study project. In the coming Process stage, we are going to use R to preview, sort, filter, and clean the data.
+
+<br>
+
+#### 3.1 Install and load packages
 First of all, we will install and load the packages that we need for the project.
 
 ```{r}
@@ -86,8 +101,9 @@ library(Tmisc)
 library(here)
 ```
 
+<br>
 
-### 3.2 Import data and view data
+#### 3.2 Import data and view data
 Then, we will import the data files and have a look on them.
 ```{r}
 daily_act <- read_csv("dailyActivity_merged.csv")   
@@ -96,15 +112,18 @@ daily_steps <- read_csv("dailySteps_merged.csv")
 ```
 We have read and saved the csv files and named them "daily_act", "daily_calories", and "daily_steps".
 
-Then, we can use *head()* to preview the datasets.
+<br>
+
+Then, we can use **head()** to preview the datasets.
 ```{r}
 head(daily_act)
 head(daily_calories)
 head(daily_steps)
 ```
 
+<br>
 
-### 3.3 Clean the datasets
+#### 3.3 Clean the datasets
 The dataset mentioned it contain 30 people of sample size based on their ID number (Id). We will need to check how many unique users (Id) in each dataset.
 ```{r}
 n_unique(daily_act$Id)
@@ -113,15 +132,17 @@ n_unique(daily_steps$Id)
 ```
 There are 33 users in each dataset in total.
 
+<br>
+
 Next, we need to check any duplicates by counting the sum of duplicates.
 ```{r}
 sum(duplicated(daily_act))
 sum(duplicated(daily_calories))
 sum(duplicated(daily_steps))
 ```
-Great. The code returns 0 that's mean there are no duplicates
-
-After that, let's remove any N/As using *distinct()* and *drop_na()* function in the dataset.
+Great. The code returns 0 that's mean there are no duplicates.
+ 
+After that, let's remove any N/As using **distinct()** and **drop_na()** function in the dataset.
 ```{r}
 daily_act <- daily_act %>% 
   distinct() %>% 
@@ -134,20 +155,23 @@ daily_steps <- daily_steps %>%
   drop_na()
 ```
 
-Double check any missing value using *is.na()* function
+<br>
+
+Double check any missing value using **is.na()** function
 ```{r}
 sum(is.na(daily_act))
 ```
 
-Let's check the data type by using *str()* function.
+Let's check the data type by using **str()** function.
 ```{r}
 str(daily_act)
 str(daily_calories)
 str(daily_steps)
 ```
 
+<br>
 
-We can see that the data from column ActivityDate are formatted in *chr (character)*. Since because it is a date, it should be stored as *Date* type. To change the data type format, we will use the *mutate()* function.
+We can see that the data from column ActivityDate are formatted in *chr (character)*. Since because it is a date, it should be stored as *Date* type. To change the data type format, we will use the **mutate()** function.
 ```{r}
 daily_act <- daily_act %>% 
   rename(Date = ActivityDate) %>%  # rename column name
@@ -163,7 +187,7 @@ daily_steps <- daily_steps %>%
 ```
 
 
-Check the data type again, we can use *glimpse()* this time.
+Check the data type again, we can use **glimpse()** this time.
 ```{r}
 glimpse(daily_act)
 glimpse(daily_calories)
@@ -183,13 +207,15 @@ daily_steps <- daily_steps %>%
   mutate(Day = weekdays(daily_steps$Date)) # Add a new column named 'Day' using the weekdays()
 ```
 
+<br>
 
 Let's have a look at the new column, we now have a new column 'Day' showing which day is it.
 ```{r}
 head(daily_calories)
 ```
+<br>
 
-> ## 4. Analyze
+### 4. Analyze
 In the Analyze stage, we will start putting it to work. 
 
 First, let's find the mean, max, min.
@@ -208,7 +234,7 @@ summary()
 ```
 The results showing that the mean daily steps of these 33 user is 7638, while maximum is 36019 and minimum is 0. 
 
-We would like to distinguish the intention of the user by grouping them into 4 categorizes by using the *mutute()* function to create a new column. I will set 7500 here as the median number for the steps.
+We would like to distinguish the intention of the user by grouping them into 4 categorizes by using the **mutute()** function to create a new column. I will set 7500 here as the median number for the steps.
 ```{r}
 daily_act02 <- daily_act %>% 
   mutate(UserType = case_when(
@@ -224,8 +250,9 @@ as_tibble(daily_act02)
 daily_act02 %>% 
   select(Id, Date, TotalSteps, Calories, Day, UserType)
 ```
+<br>
 
-> ## 5. Share
+### 5. Share
 
 Let's create some visual graph to have a look.
 ```{r}
@@ -238,31 +265,41 @@ ggplot(data = daily_act02)+
   geom_bar(mapping = aes(x=Day, fill=UserType))
 ```
 
-#### Some findings
+<br>
+
+Some findings
 
 * The bar chart above showing that Tuesday and Wednesday have the most user are being active, while Monday and Sunday have less user being active
 * Wednesday and Saturday have the most user who are consider "lightly active" compared to the rest of the days
 
-
+<br>
 
 Now, let's going through the relationship between total steps and calories, we will use *geom_smooth()* function to graph for the two variables.
 ```{r}
 ggplot(data = daily_act02)+
   geom_smooth(mapping = aes(x=Calories, y=TotalSteps)) + ylab('Total Steps')
 ```
-#### Some findings
+
+<br>
+
+Some findings
 
 * The trend went very smooth, showing a positive relationship between total steps walked each day and calories burned each day. The more steps user walked, the more calories they can burn
 
+<br>
 
-> ## 6. Act
+### 6. Act
+<br>
 
-### Conclusion
+#### Conclusion and recommendation
 Summed up the factors that we outlined above, we can draw the conclusion that users have preference on week of day to be active or less active.
 
-### Recommendation
+<br>
+ 
 1. Bellabeat app notification
 All user from Bellabeat are linked and being tracked to their smart device. Mobile app development team may consider sending notification when user are being not that active enough on the Day they usually being lazy.
 
 2. Health information 
 Everyone know regularly exercising are benefits to their body. People from now a days are being busy from their work and school. The mobile app could send user reminder if they didn't walk sufficient amount of steps or not being active for a time period.
+ 
+<br>
