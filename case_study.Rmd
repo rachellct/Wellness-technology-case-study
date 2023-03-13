@@ -1,8 +1,13 @@
 ---
 title: "Wellness Technology Case Study - Bellabeat Analysis"
 author: "Rachel"
-date: "2023-03-10"
-output: html_document
+output: 
+  html_document:
+  fig_caption: yes
+  theme: cerulean
+  toc: yes
+  toc_depth: 3
+  toc_float: yes
 ---
 
 ## Scenario
@@ -64,12 +69,12 @@ I have choosen to use programming R for my first case study project. In the comi
 First of all, we will install and load the packages that we need for the project.
 
 ```{r}
-install.packages("tidyverse")
-install.packages("lubridate")
-install.packages("skimr")
-install.packages("janitor")
-install.packages("Tmisc")
-install.packages("here")
+install.packages("tidyverse", repos = "http://cran.us.r-project.org")
+install.packages("lubridate", repos = "http://cran.us.r-project.org")
+install.packages("skimr", repos = "http://cran.us.r-project.org")
+install.packages("janitor", repos = "http://cran.us.r-project.org")
+install.packages("Tmisc", repos = "http://cran.us.r-project.org")
+install.packages("here", repos = "http://cran.us.r-project.org")
 ```
 
 ```{r}
