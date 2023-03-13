@@ -70,7 +70,9 @@ install.packages("skimr")
 install.packages("janitor")
 install.packages("Tmisc")
 install.packages("here")
+```
 
+```{r}
 library(tidyverse)
 library(lubridate)
 library(skimr)
@@ -78,7 +80,6 @@ library(janitor)
 library(Tmisc)
 library(here)
 ```
-
 
 ### 3.2 Import data and view data
 #Then, we will import the data files and have a look on them.

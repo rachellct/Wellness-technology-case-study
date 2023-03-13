@@ -62,6 +62,7 @@ I have choosen to use programming R for my first case study project. In the comi
 
 ### 3.1 Install and load packages
 First of all, we will install and load the packages that we need for the project.
+
 ```{r}
 install.packages("tidyverse")
 install.packages("lubridate")
@@ -69,7 +70,9 @@ install.packages("skimr")
 install.packages("janitor")
 install.packages("Tmisc")
 install.packages("here")
+```
 
+```{r}
 library(tidyverse)
 library(lubridate)
 library(skimr)
