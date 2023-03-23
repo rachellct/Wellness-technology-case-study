@@ -3,6 +3,6 @@ Author: Rachel Lau
 
 This case study is a capstone project required completion for obtaining the Google Data Analytics Certification program.
 
-In this case study, we are going to explore and analyze a fitness tracker dataset, while gaining insight for a wellness technology company.
+In this case study, we are going to explore and analyze a fitness tracker dataset using R programming language and several packages such tidyverse and ggplot2, and gaining insight for a wellness technology company.
 
 Please visit [here](https://github.com/rachellct/Wellness_techonology_case_study/blob/main/case_study.md) for the whole project. 
