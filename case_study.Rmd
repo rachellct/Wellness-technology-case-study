@@ -83,7 +83,7 @@ I have choosen to use programming R for the case study project. In the coming Pr
 #### 3.1 Install and load packages
 First of all, we will install and load the packages that we need for the project.
 
-```{r}
+```{r echo=TRUE}
 install.packages("tidyverse", repos = "http://cran.us.r-project.org")
 install.packages("lubridate", repos = "http://cran.us.r-project.org")
 install.packages("skimr", repos = "http://cran.us.r-project.org")
@@ -92,7 +92,7 @@ install.packages("Tmisc", repos = "http://cran.us.r-project.org")
 install.packages("here", repos = "http://cran.us.r-project.org")
 ```
 
-```{r}
+```{r echo=TRUE}
 library(tidyverse)
 library(lubridate)
 library(skimr)
@@ -105,7 +105,7 @@ library(here)
 
 #### 3.2 Import data and view data
 Then, we will import the data files and have a look on them.
-```{r}
+```{r echo=TRUE}
 daily_act <- read_csv("dailyActivity_merged.csv")   
 daily_calories <- read_csv("dailyCalories_merged.csv")  
 daily_steps <- read_csv("dailySteps_merged.csv")
@@ -115,7 +115,7 @@ We have read and saved the csv files and named them "daily_act", "daily_calories
 <br>
 
 Then, we can use **head()** to preview the datasets.
-```{r}
+```{r echo=TRUE}
 head(daily_act)
 head(daily_calories)
 head(daily_steps)
@@ -125,7 +125,7 @@ head(daily_steps)
 
 #### 3.3 Clean the datasets
 The dataset mentioned it contain 30 people of sample size based on their ID number (Id). We will need to check how many unique users (Id) in each dataset.
-```{r}
+```{r echo=TRUE}
 n_unique(daily_act$Id)
 n_unique(daily_calories$Id)
 n_unique(daily_steps$Id)
@@ -135,7 +135,7 @@ There are 33 users in each dataset in total.
 <br>
 
 Next, we need to check any duplicates by counting the sum of duplicates.
-```{r}
+```{r echo=TRUE}
 sum(duplicated(daily_act))
 sum(duplicated(daily_calories))
 sum(duplicated(daily_steps))
@@ -143,7 +143,7 @@ sum(duplicated(daily_steps))
 Great. The code returns 0 that's mean there are no duplicates.
  
 After that, let's remove any N/As using **distinct()** and **drop_na()** function in the dataset.
-```{r}
+```{r echo=TRUE}
 daily_act <- daily_act %>% 
   distinct() %>% 
   drop_na()
@@ -158,12 +158,12 @@ daily_steps <- daily_steps %>%
 <br>
 
 Double check any missing value using **is.na()** function
-```{r}
+```{r echo=TRUE}
 sum(is.na(daily_act))
 ```
 
 Let's check the data type by using **str()** function.
-```{r}
+```{r eval=FALSE}
 str(daily_act)
 str(daily_calories)
 str(daily_steps)
@@ -172,7 +172,7 @@ str(daily_steps)
 <br>
 
 We can see that the data from column ActivityDate are formatted in *chr (character)*. Since because it is a date, it should be stored as *Date* type. To change the data type format, we will use the **mutate()** function.
-```{r}
+```{r echo=TRUE}
 daily_act <- daily_act %>% 
   rename(Date = ActivityDate) %>%  # rename column name
   mutate(Date = as_date(Date, format = "%m/%d/%Y"))
@@ -188,7 +188,7 @@ daily_steps <- daily_steps %>%
 
 
 Check the data type again, we can use **glimpse()** this time.
-```{r}
+```{r echo=TRUE}
 glimpse(daily_act)
 glimpse(daily_calories)
 glimpse(daily_steps)
@@ -198,7 +198,7 @@ The data type of ActivityDate has been changed to *date* and renamed as "Date" s
 
 
 We would also like to add a new column showing the day of the week, to help for analyzing later on.
-```{r}
+```{r echo=TRUE}
 daily_act <- daily_act %>% 
   mutate(Day = weekdays(daily_act$Date))
 daily_calories <- daily_calories %>% 
@@ -210,7 +210,7 @@ daily_steps <- daily_steps %>%
 <br>
 
 Let's have a look at the new column, we now have a new column 'Day' showing which day is it.
-```{r}
+```{r echo=TRUE}
 head(daily_calories)
 ```
 <br>
@@ -219,7 +219,7 @@ head(daily_calories)
 In the Analyze stage, we will start putting it to work. 
 
 First, let's find the mean, max, min.
-```{r}
+```{r echo=TRUE}
 daily_act %>%
   group_by(Id) %>% 
   summarize(mean_steps = mean(TotalSteps),   
@@ -227,7 +227,7 @@ daily_act %>%
             min_steps = min(TotalSteps))
 ```
 
-```{r}
+```{r eval=FALSE}
 daily_act %>% 
   select(TotalSteps) %>% 
 summary()
@@ -235,7 +235,7 @@ summary()
 The results showing that the mean daily steps of these 33 user is 7638, while maximum is 36019 and minimum is 0. 
 
 We would like to distinguish the intention of the user by grouping them into 4 categorizes by using the **mutute()** function to create a new column. I will set 7500 here as the median number for the steps.
-```{r}
+```{r echo=TRUE}
 daily_act02 <- daily_act %>% 
   mutate(UserType = case_when(
     TotalSteps < 4000 ~ "Sedentary Active",
@@ -246,7 +246,7 @@ daily_act02 <- daily_act %>%
 as_tibble(daily_act02)
 ```
 
-```{r}
+```{r echo=TRUE}
 daily_act02 %>% 
   select(Id, Date, TotalSteps, Calories, Day, UserType)
 ```
@@ -255,7 +255,7 @@ daily_act02 %>%
 ### 5. Share
 
 Let's create some visual graph to have a look.
-```{r}
+```{r echo=TRUE}
 install.packages("ggplot2") # install and load package 
 library(ggplot2)
 
@@ -275,7 +275,7 @@ Some findings
 <br>
 
 Now, let's going through the relationship between total steps and calories, we will use *geom_smooth()* function to graph for the two variables.
-```{r}
+```{r echo=TRUE}
 ggplot(data = daily_act02)+
   geom_smooth(mapping = aes(x=Calories, y=TotalSteps)) + ylab('Total Steps')
 ```

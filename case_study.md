@@ -124,7 +124,7 @@ install.packages("tidyverse", repos = "http://cran.us.r-project.org")
     ## package 'tidyverse' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
     ## installing the source package 'cli'
 
@@ -142,7 +142,7 @@ install.packages("lubridate", repos = "http://cran.us.r-project.org")
     ## package 'lubridate' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
 ``` r
 install.packages("skimr", repos = "http://cran.us.r-project.org")
@@ -154,7 +154,7 @@ install.packages("skimr", repos = "http://cran.us.r-project.org")
     ## package 'skimr' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
 ``` r
 install.packages("janitor", repos = "http://cran.us.r-project.org")
@@ -166,7 +166,7 @@ install.packages("janitor", repos = "http://cran.us.r-project.org")
     ## package 'janitor' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
 ``` r
 install.packages("Tmisc", repos = "http://cran.us.r-project.org")
@@ -178,7 +178,7 @@ install.packages("Tmisc", repos = "http://cran.us.r-project.org")
     ## package 'Tmisc' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
 ``` r
 install.packages("here", repos = "http://cran.us.r-project.org")
@@ -190,7 +190,7 @@ install.packages("here", repos = "http://cran.us.r-project.org")
     ## package 'here' successfully unpacked and MD5 sums checked
     ## 
     ## The downloaded binary packages are in
-    ##  C:\Users\rache\AppData\Local\Temp\RtmpiOqNpE\downloaded_packages
+    ##  C:\Users\rache\AppData\Local\Temp\RtmpIpJT8O\downloaded_packages
 
 ``` r
 library(tidyverse)
@@ -425,42 +425,9 @@ Let’s check the data type by using **str()** function.
 
 ``` r
 str(daily_act)
-```
-
-    ## tibble [940 × 15] (S3: tbl_df/tbl/data.frame)
-    ##  $ Id                      : num [1:940] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
-    ##  $ ActivityDate            : chr [1:940] "4/12/2016" "4/13/2016" "4/14/2016" "4/15/2016" ...
-    ##  $ TotalSteps              : num [1:940] 13162 10735 10460 9762 12669 ...
-    ##  $ TotalDistance           : num [1:940] 8.5 6.97 6.74 6.28 8.16 ...
-    ##  $ TrackerDistance         : num [1:940] 8.5 6.97 6.74 6.28 8.16 ...
-    ##  $ LoggedActivitiesDistance: num [1:940] 0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ VeryActiveDistance      : num [1:940] 1.88 1.57 2.44 2.14 2.71 ...
-    ##  $ ModeratelyActiveDistance: num [1:940] 0.55 0.69 0.4 1.26 0.41 ...
-    ##  $ LightActiveDistance     : num [1:940] 6.06 4.71 3.91 2.83 5.04 ...
-    ##  $ SedentaryActiveDistance : num [1:940] 0 0 0 0 0 0 0 0 0 0 ...
-    ##  $ VeryActiveMinutes       : num [1:940] 25 21 30 29 36 38 42 50 28 19 ...
-    ##  $ FairlyActiveMinutes     : num [1:940] 13 19 11 34 10 20 16 31 12 8 ...
-    ##  $ LightlyActiveMinutes    : num [1:940] 328 217 181 209 221 164 233 264 205 211 ...
-    ##  $ SedentaryMinutes        : num [1:940] 728 776 1218 726 773 ...
-    ##  $ Calories                : num [1:940] 1985 1797 1776 1745 1863 ...
-
-``` r
 str(daily_calories)
-```
-
-    ## tibble [940 × 3] (S3: tbl_df/tbl/data.frame)
-    ##  $ Id         : num [1:940] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
-    ##  $ ActivityDay: chr [1:940] "4/12/2016" "4/13/2016" "4/14/2016" "4/15/2016" ...
-    ##  $ Calories   : num [1:940] 1985 1797 1776 1745 1863 ...
-
-``` r
 str(daily_steps)
 ```
-
-    ## tibble [940 × 3] (S3: tbl_df/tbl/data.frame)
-    ##  $ Id         : num [1:940] 1.5e+09 1.5e+09 1.5e+09 1.5e+09 1.5e+09 ...
-    ##  $ ActivityDay: chr [1:940] "4/12/2016" "4/13/2016" "4/14/2016" "4/15/2016" ...
-    ##  $ StepTotal  : num [1:940] 13162 10735 10460 9762 12669 ...
 
 <br>
 
@@ -597,14 +564,6 @@ daily_act %>%
   select(TotalSteps) %>% 
 summary()
 ```
-
-    ##    TotalSteps   
-    ##  Min.   :    0  
-    ##  1st Qu.: 3790  
-    ##  Median : 7406  
-    ##  Mean   : 7638  
-    ##  3rd Qu.:10727  
-    ##  Max.   :36019
 
 The results showing that the mean daily steps of these 33 user is 7638,
 while maximum is 36019 and minimum is 0.
