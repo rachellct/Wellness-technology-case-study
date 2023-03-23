@@ -6,5 +6,3 @@ This case study is a capstone project required completion for obtaining the Goog
 In this case study, we are going to explore and analyze a fitness tracker dataset using **R programming language** and several packages such **tidyverse** and **ggplot2**, and gain insight for a wellness technology company.
 
 Please visit [here](https://github.com/rachellct/Wellness_techonology_case_study/blob/main/case_study.md) for the whole project. 
-
-![](https://1drv.ms/i/s!Am2HAomwZmycpHysvCAd4BZO2ugp?e=CZMTtb)
