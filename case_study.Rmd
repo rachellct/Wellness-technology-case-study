@@ -2,7 +2,7 @@
 title: "Wellness Technology Case Study - Bellabeat Analysis"
 author: "Rachel Lau"
 output: 
-  html_document:
+  rmarkdown::github_document:
   fig_caption: yes
   theme: cerulean
   toc: yes
